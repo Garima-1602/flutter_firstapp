@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import './app_screen/first_screen.dart';
 //this is library which contain material design
 //material design lang developed by google and defines some guidelines for ios,web and all
 //import './app_screen/first_screen.dart';
@@ -17,21 +18,12 @@ class MyFlutterApp extends StatelessWidget
   Widget build(BuildContext context)
   {
     return MaterialApp(
-      //debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
         title:"My Flutter App",
         home:Scaffold(
-          appBar:AppBar(title:Text("My first App"),backgroundColor:Colors.black),
-          body: Material( //return material widget
-            color:Colors.green,
-            child:Center( //center and text are widgets here
-              child:Text(
-                "Know Your Plant",
-                textDirection: TextDirection.ltr,
-                style: TextStyle(color:Colors.white,fontSize:25.0 ),
-              ),
-            ),
-          )
-        )    //scaffold:it allows to add app bar at top of application
+          appBar: AppBar(title: Text("My First App "),backgroundColor: Colors.black,),
+          body: FirstScreen()
+    )    //scaffold:it allows to add app bar at top of application
     );
   }
 }
