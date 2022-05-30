@@ -10,7 +10,7 @@ class FirstScreen extends StatelessWidget {
       child:Center(
         child:Text(
           //"Know Your Plant",
-          "Lucky number is ${generateLuckyNumber()}",
+          generateLuckyNumber(),
           textDirection: TextDirection.ltr,
           style:TextStyle(color:Colors.white,fontSize: 40.0),
         ),
@@ -18,11 +18,11 @@ class FirstScreen extends StatelessWidget {
     );
   }
 
-  int generateLuckyNumber()
+  String generateLuckyNumber()
   {
     var random =Random();
     int luckyNumber =random.nextInt(10);
-    return luckyNumber;
+    return "Your Lucky No. is $luckyNumber";
   }
 
 }
