@@ -36,6 +36,11 @@ void main(){
     home: Scaffold(
       appBar: AppBar(title: Text("Long list view"),),
       body: getListView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+        tooltip: 'Add more items' ,
+      ),
     ),
 
   ));
