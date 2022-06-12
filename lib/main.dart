@@ -34,46 +34,70 @@ void main(){
     debugShowCheckedModeBanner: false,
     title:"Exploring UI Widgets",
     home: Scaffold(
-      appBar: AppBar(title: Text("Basic List view"),),
+      appBar: AppBar(title: Text("Long list view"),),
       body: getListView(),
     ),
-    //always put scrollable widgets within scaffold because they might overflow
+
   ));
 }
-
+//Function to prepare data source
+List<String> getListElements(){
+  var items=List<String>.generate(1000, (counter) => "Item $counter");
+  return items;
+}
+//once data source is prepared wrap in the widgets
 Widget getListView()
-{ //ListView is a scrollable list of widgets arranged linearly.
-  // It displays its children one
-  // after another in the scroll direction i.e, vertical or horizontal.
-  var listView = ListView(
-    children: <Widget>[
-
-      ListTile(
-        leading: Icon(Icons.landscape),
-        title: Text("Landscape"),
-        subtitle: Text("B'ful View!"),
-        trailing: Icon(Icons.wb_sunny),
-        onTap: (){//we cannot add on tap on 1000 list items therefore basic listview
-          //is meant for few items only
-          //never use listview for large items
-          //always use or wrap listview in sccafold as it may go beyond the screen as
-          //items are movable in list
-          debugPrint("Landscape");
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.laptop_chromebook),
-        title: Text("windows"),
-        //subtitle: Text("B'ful View!"),
-        //trailing: Icon(Icons.wb_sunny),
-      ),
-      ListTile(
-      leading: Icon(Icons.phone),
-        title: Text("phone"),
-),
-
-    ],
-
+{
+  var listItems=getListElements();
+  var listView=ListView.builder(
+    //listview builder calls the builder method that are visible on screen
+      //ListView.builder creates a scrollable, linear array of widgets.
+      itemBuilder: (context,index){
+        return ListTile(
+          leading: Icon(Icons.arrow_right),
+          title:Text(listItems[index]),
+          onTap: (){
+            debugPrint('${listItems[index]}was tapped');
+          }
+        );
+      }
   );
   return listView;
 }
+
+// Widget getListView()
+// { //ListView is a scrollable list of widgets arranged linearly.
+//   // It displays its children one
+//   // after another in the scroll direction i.e, vertical or horizontal.
+//   var listView = ListView(
+//     children: <Widget>[
+//
+//       ListTile(
+//         leading: Icon(Icons.landscape),
+//         title: Text("Landscape"),
+//         subtitle: Text("B'ful View!"),
+//         trailing: Icon(Icons.wb_sunny),
+//         onTap: (){//we cannot add on tap on 1000 list items therefore basic listview
+//           //is meant for few items only
+//           //never use listview for large items
+//           //always use or wrap listview in sccafold as it may go beyond the screen as
+//           //items are movable in list
+//           debugPrint("Landscape");
+//         },
+//       ),
+//       ListTile(
+//         leading: Icon(Icons.laptop_chromebook),
+//         title: Text("windows"),
+//         //subtitle: Text("B'ful View!"),
+//         //trailing: Icon(Icons.wb_sunny),
+//       ),
+//       ListTile(
+//       leading: Icon(Icons.phone),
+//         title: Text("phone"),
+// ),
+//
+//     ],
+//
+//   );
+//   return listView;
+// }
