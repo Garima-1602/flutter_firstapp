@@ -34,6 +34,7 @@ void main(){
     debugShowCheckedModeBanner: false,
     title:"Exploring UI Widgets",
     home: Scaffold(
+      appBar: AppBar(title: Text("Basic List view"),),
       body: getListView(),
     ),
     //always put scrollable widgets within scaffold because they might overflow
@@ -46,6 +47,7 @@ Widget getListView()
   // after another in the scroll direction i.e, vertical or horizontal.
   var listView = ListView(
     children: <Widget>[
+
       ListTile(
         leading: Icon(Icons.landscape),
         title: Text("Landscape"),
