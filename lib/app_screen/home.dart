@@ -5,13 +5,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-            padding: EdgeInsets.only(top: 50.0,left: 10.0,right: 10.0),
+            padding: EdgeInsets.only(top: 80.0,left: 10.0,right: 10.0),
             alignment: Alignment.center,
             color: Colors.green,
             //width:200.0,
             //height:100.0,
             //margin: EdgeInsets.all(15.0),
-
+           //adding images using assets-assets are resources that you add
+            //locally in app
             child: Column(
               children: <Widget>[
                 Row(
@@ -36,7 +37,7 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         decoration: TextDecoration.none,
                         color: Colors.black,
-                        fontSize: 35.0,
+                        fontSize: 25.0,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w700,
                       ),
@@ -71,8 +72,18 @@ class Home extends StatelessWidget {
                           ),
                         )),
                   ],
-                )
+                ),
+                FlightImageAsset()
               ],
             )));
+  }
+}
+class FlightImageAsset extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/plantimage.jpg');
+    Image image = Image(image: assetImage,width: 250.0,height:300.0);
+    return Container(child: image,
+      padding: EdgeInsets.only(top: 80.0,left: 10.0,right: 10.0),);
   }
 }
