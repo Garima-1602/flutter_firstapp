@@ -33,7 +33,38 @@ void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title:"Exploring UI Widgets",
-    home:Home(),
+    home: Scaffold(
+      body: getListView(),
+    ),
+    //always put scrollable widgets within scaffold because they might overflow
   ));
 }
 
+Widget getListView()
+{ //ListView is a scrollable list of widgets arranged linearly.
+  // It displays its children one
+  // after another in the scroll direction i.e, vertical or horizontal.
+  var listView = ListView(
+    children: <Widget>[
+      ListTile(
+        leading: Icon(Icons.landscape),
+        title: Text("Landscape"),
+        subtitle: Text("B'ful View!"),
+        trailing: Icon(Icons.wb_sunny),
+      ),
+      ListTile(
+        leading: Icon(Icons.laptop_chromebook),
+        title: Text("windows"),
+        //subtitle: Text("B'ful View!"),
+        //trailing: Icon(Icons.wb_sunny),
+      ),
+      ListTile(
+      leading: Icon(Icons.phone),
+        title: Text("phone"),
+),
+
+    ],
+
+  );
+  return listView;
+}
