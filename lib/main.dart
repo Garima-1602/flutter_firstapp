@@ -53,6 +53,13 @@ Widget getListView()
         title: Text("Landscape"),
         subtitle: Text("B'ful View!"),
         trailing: Icon(Icons.wb_sunny),
+        onTap: (){//we cannot add on tap on 1000 list items therefore basic listview
+          //is meant for few items only
+          //never use listview for large items
+          //always use or wrap listview in sccafold as it may go beyond the screen as
+          //items are movable in list
+          debugPrint("Landscape");
+        },
       ),
       ListTile(
         leading: Icon(Icons.laptop_chromebook),
