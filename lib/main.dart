@@ -27,8 +27,14 @@
 //     );
 //   }
 //
+//steps of using stateful widgets
+//create a class that extends statefulwidget and return a state in "createstate()"
+//create state class with properties that may change
+//within state class implement  build()method
+//call setstate() to make changes ,it tells framework to redraw widget
 import 'package:flutter/material.dart';
 import './app_screen/home.dart';
+
 void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
