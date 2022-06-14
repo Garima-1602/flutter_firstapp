@@ -1,133 +1,60 @@
-// import "package:flutter/material.dart";
-// import './app_screen/first_screen.dart';
-// //this is library which contain material design
-// //material design lang developed by google and defines some guidelines for ios,web and all
-// //import './app_screen/first_screen.dart';
-// void main()//whatever we write in this will be executed //entry point of application
-// {
-//   runApp(new MyFlutterApp()); //inflates the widget and show it on app screen
-//      //add another widget  materialapp);
-// }
-// //FUNCTION EXPRESSION -:WHEN WE HAVE ONE LINE CODE CAN BE WRITTEN AS
-// //void main() =>runApp(new MyFlutterApp());
-// class MyFlutterApp extends StatelessWidget
-//     //the widget return in this will not contain any state and will not be changed in future
-//     //Stateless widget is superclass and myflutterapp is sub class
-// {
-//   @override
-//   Widget build(BuildContext context)
-//   {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//         title:"My Flutter App",
-//         home:Scaffold(
-//           appBar: AppBar(title: Text("My First App "),backgroundColor: Colors.black,),
-//           body: FirstScreen()
-//     )    //scaffold:it allows to add app bar at top of application
-//     );
-//   }
-//
-//steps of using stateful widgets
-//create a class that extends statefulwidget and return a state in "createstate()"
-//create state class with properties that may change
-//within state class implement  build()method
-//call setstate() to make changes ,it tells framework to redraw widget
 import 'package:flutter/material.dart';
-import './app_screen/home.dart';
+import 'package:flutter/rendering.dart';
 
 void main(){
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title:"Exploring UI Widgets",
-    home: Scaffold(
-      appBar: AppBar(title: Text("Long list view"),),
-      body: getListView(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          debugPrint('FAB clicked!');
-        },
-        child: Icon(Icons.add),
-        tooltip: 'Add more items' ,
-      ),
-    ),
-
-  ));
-}
-//function to show snackbar
-void showSnackBar(BuildContext context,String item)
-{
-  var snackBar=SnackBar(
-   content: Text("You tapped  $item"),
-    action: SnackBarAction(
-      label: 'UNDO',
-      onPressed: ()
-        {
-          debugPrint('Performing Action');
-        }
-    ),
-     );
-  Scaffold.of(context).showSnackBar(snackBar);
-}
-
-
-//Function to prepare data source
-List<String> getListElements(){
-  var items=List<String>.generate(1000, (counter) => "Item $counter");
-  return items;
-}
-//once data source is prepared wrap in the widgets
-Widget getListView()
-{
-  var listItems=getListElements();
-  var listView=ListView.builder(
-    //listview builder calls the builder method that are visible on screen
-      //ListView.builder creates a scrollable, linear array of widgets.
-      itemBuilder: (context,index){
-        return ListTile(
-          leading: Icon(Icons.arrow_right),
-          title:Text(listItems[index]),
-          onTap: (){
-            showSnackBar(context,listItems[index]);
-          }
+  runApp(
+  MaterialApp(
+    title: 'Stateful widget app',
+    home: FavoriteCity(), //favoritecity will be stateful widget
+               )
         );
-      }
-  );
-  return listView;
 }
 
-// Widget getListView()
-// { //ListView is a scrollable list of widgets arranged linearly.
-//   // It displays its children one
-//   // after another in the scroll direction i.e, vertical or horizontal.
-//   var listView = ListView(
-//     children: <Widget>[
-//
-//       ListTile(
-//         leading: Icon(Icons.landscape),
-//         title: Text("Landscape"),
-//         subtitle: Text("B'ful View!"),
-//         trailing: Icon(Icons.wb_sunny),
-//         onTap: (){//we cannot add on tap on 1000 list items therefore basic listview
-//           //is meant for few items only
-//           //never use listview for large items
-//           //always use or wrap listview in sccafold as it may go beyond the screen as
-//           //items are movable in list
-//           debugPrint("Landscape");
-//         },
-//       ),
-//       ListTile(
-//         leading: Icon(Icons.laptop_chromebook),
-//         title: Text("windows"),
-//         //subtitle: Text("B'ful View!"),
-//         //trailing: Icon(Icons.wb_sunny),
-//       ),
-//       ListTile(
-//       leading: Icon(Icons.phone),
-//         title: Text("phone"),
-// ),
-//
-//     ],
-//
-//   );
-//   return listView;
-// }
+class FavoriteCity extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return _FavoriteCityState();
+  }
+}
+//define state//_so that class will remain private to own library
+//this class defines state of our widget
+class _FavoriteCityState extends State<FavoriteCity>{
+  String nameCity ="";
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Stateful Widget"),
+      ),
+      body: Container(
+        margin: EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[ //array of widgets
+            TextField(
+              //can use onChanged as well instead of onSubmitted
+              onSubmitted: (String userInput){
+                setState(() {
+                  nameCity= userInput;
+                });
+
+
+              },
+            //widget in flutter that allow user to enter some data
+            //i.e it allows user inputFormatters:
+            ),
+            Padding(
+              padding: EdgeInsets.all(30.0),
+                child: Text(
+              'Your fav city is $nameCity',
+              style: TextStyle(fontSize: 30.0,color: Colors.black,),
+
+
+            ))
+
+          ],
+        ),
+      ),
+    );
+  }
+}
