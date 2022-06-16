@@ -9,7 +9,7 @@ void main(){
                )
         );
 }
-
+//create a class that extends stateful widget and then return state in createstate
 class FavoriteCity extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
@@ -18,8 +18,11 @@ class FavoriteCity extends StatefulWidget{
 }
 //define state//_so that class will remain private to own library
 //this class defines state of our widget
+//create state class                typeparameter
 class _FavoriteCityState extends State<FavoriteCity>{
   String nameCity ="";
+  var _currencies = ['Rupees','dollar','pounds','others'];
+  var _currentItemSelected ='Rupees';
   @override
   Widget build(BuildContext context) {
 
@@ -43,6 +46,21 @@ class _FavoriteCityState extends State<FavoriteCity>{
             //widget in flutter that allow user to enter some data
             //i.e it allows user inputFormatters:
             ),
+            DropdownButton<String>(
+                items: _currencies.map((String dropDownStringItem){
+                  return DropdownMenuItem<String>
+                    (
+                    value: dropDownStringItem,
+                    child: Text(dropDownStringItem),
+
+                  );
+                }).toList(),
+              onChanged: (String newValueSelected){
+                _ondropDownItemSelected(newValueSelected);
+
+              },
+              value:  _currentItemSelected ,
+            ),
             Padding(
               padding: EdgeInsets.all(30.0),
                 child: Text(
@@ -56,5 +74,10 @@ class _FavoriteCityState extends State<FavoriteCity>{
         ),
       ),
     );
+  }
+  void _ondropDownItemSelected(String newValueSelected)){
+  setState(() {
+  this._currentItemSelected =newValueSelected;
+  });
   }
 }
